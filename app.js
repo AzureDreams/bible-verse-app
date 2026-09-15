@@ -1,7 +1,18 @@
 // MILESTONE 1: show today's date in #date (hint: new Date())
+const dateElement = document.querySelector('#date');//target date element so i can use hs on it
+const today = new Date();//create new date objects that pulls date and time from browser
+// take current date object and format
+const formatted = today.toLocaleDateString('en-US', {
+  weekday: 'long',
+  month:'long',
+  day: 'numeric',
+  year:'numeric'
+});
+dateElement.textContent = formatted; //chaneg date elements tex to read the formatted date
+console.log(dateElement);
 
 // MILESTONE 2: fetch a verse and display it
-// Try: https://bible-api.com/john+3:16
+console.log(fetch('https://bible-api.com/john+3:16')); //fetch verse from this api 
 async function getVerse() {
   // your fetch here — update #verse and #reference
 }
