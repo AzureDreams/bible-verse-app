@@ -1,7 +1,7 @@
 // MILESTONE 1: show today's date in #date ()
 const dateElement = document.querySelector('#date');//target date element so i can use hs on it
 const today = new Date();//create new date objects that pulls date and time from browser
-// take current date object and format
+// take current date object and format it
 const formatted = today.toLocaleDateString('en-US', {
   weekday: 'long',
   month:'long',
@@ -12,9 +12,13 @@ dateElement.textContent = formatted; //change date elements text to read the for
 console.log(dateElement);
 
 // MILESTONE 2: fetch a verse and display it
-console.log(fetch('https://bible-api.com/john+3:16')); //fetch verse from this api 
 async function getVerse() {
-  //  fetch here — update #verse and #reference
+  const response = await fetch('https://bible-api.com/john+3:16'); // fetch the verse from api 
+  const data = await response.json(); // take the raw data from api and turn it into a js object 
+  document.querySelector('#verse').textContent = data.text; // take the verse data and parse on page
+  document.querySelector('#reference').textContent = data.reference; // take the refrence data and parse on page;
+
+  
 }
 
 // MILESTONE 3: pick the verse based on today's date
