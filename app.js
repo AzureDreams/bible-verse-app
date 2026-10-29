@@ -2,8 +2,9 @@ const dateElement = document.querySelector('#date');//target date element so i c
 const newVerse = document.querySelector('#new-verse');
 const today = new Date();//create new date object that pulls date and time from browser
 const verses = ['john+3:16', 'psalms+23:1', 'romans+8:28', 'matthew+24:14','philippians+4:13'];// list of verse refrences
-const index = today.getDate() % verses.length; //grab todays date by and use modulo to determine which verse gets picked
+let index = today.getDate() % verses.length; //grab todays date by and use modulo to determine which verse gets picked
 // take current date object and  convert to a formatted string 
+const copyBtn = document.querySelector('copy');// target the copy  button
 const formatted = today.toLocaleDateString('en-US', {
   weekday: 'long',
   month:'long',
@@ -11,7 +12,7 @@ const formatted = today.toLocaleDateString('en-US', {
   year:'numeric'
 });
 dateElement.textContent = formatted; //change date elements text to read the formatted date
- newVerse.addEventListener("click", getVerse);
+ 
 
 //Fetch verse and display it /try and catch to handle errors
 async function getVerse() {
@@ -36,7 +37,12 @@ document.querySelector('#verse').textContent = data.text; // take the verse data
 
 
 // MILESTONE 5: wire up the buttons
-// #new-verse -> fetch a different verse
+newVerse.addEventListener('click', () => {
+  index = (index + 1) % verses.length; //moves to next index and wraps around back to 0 at end
+  getVerse();
+})
+
 // #copy -> copy verse text to clipboard ( navigator.clipboard)
+
 
 getVerse();
