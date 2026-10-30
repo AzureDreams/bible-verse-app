@@ -1,5 +1,5 @@
 const dateElement = document.querySelector('#date');//target date element so i can use js on it later
-const newVerse = document.querySelector('#new-verse');
+const newVerse = document.querySelector('#new-verse');// target date element
 const today = new Date();//create new date object that pulls date and time from browser
 const verses = ['john+3:16', 'psalms+23:1', 'romans+8:28', 'matthew+24:14','philippians+4:13'];// list of verse refrences
 let index = today.getDate() % verses.length; //grab todays date by and use modulo to determine which verse gets picked
@@ -23,7 +23,7 @@ async function getVerse() {
 document.querySelector('#verse').textContent = data.text; // take the verse data and render on page
   document.querySelector('#reference').textContent = data.reference;} // take the refrence data and render on page;
   catch(error){
-    document.querySelector('#verse').textContent = 'An error has occured, please try again.';
+    document.querySelector('#verse').textContent = 'An error has occured, please try again.'; //error in case fetch fails
   } 
   
   
@@ -45,18 +45,18 @@ newVerse.addEventListener('click', () => {
 
 // #copy -> copy verse text to clipboard ( navigator.clipboard)
 copyBtn.addEventListener('click', async() => {
-  const verseText = document.querySelector('#verse').textContent.trim();
-  const reference = document.querySelector('#reference').textContent.trim();
+  const verseText = document.querySelector('#verse').textContent.trim(); //target and remove white space from verse
+  const reference = document.querySelector('#reference').textContent.trim();// target and remove whitespace from refernce
 
   try {
-    await navigator.clipboard.writeText(`${verseText} - ${reference}`);
-    copyBtn.textContent = 'Copied!';
-    setTimeout(() => {
+    await navigator.clipboard.writeText(`${verseText} - ${reference}`); //copy verse and refrence to clipboard
+    copyBtn.textContent = 'Copied!'; // change button text to 'Copied'
+    setTimeout(() => { // wait 2 seconds before chanign button text back to copy 
       copyBtn.textContent = 'Copy';
     },2000);
   } catch(error){
-    copyBtn.textContent = 'Copy failed';
+    copyBtn.textContent = 'Copy failed'; // change button text if copy fails 
   }
 });
 
-getVerse();
+getVerse(); //invoking my function
