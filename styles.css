@@ -10,6 +10,12 @@ body {
   box-sizing: border-box;
 }
 
+h1 {
+  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  color: #1f2937;
+}
 .card {
   background: #fffdf9;
   max-width: 640px;
@@ -106,7 +112,6 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
-/* Phone widths: tighter padding, slightly smaller verse text */
 @media (max-width: 520px) {
   .card {
     padding: 32px 24px;
